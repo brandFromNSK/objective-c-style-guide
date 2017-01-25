@@ -57,13 +57,27 @@ UIApplication.sharedApplication.delegate;
 * Indent using 4 spaces. Never indent with tabs. Be sure to set this preference in Xcode.
 * Method braces and other braces (`if`/`else`/`switch`/`while` etc.) always open on the same line as the statement but close on a new line.
 
-**For example:**
+**BAD example:**
 ```objc
 if (user.isHappy) {
 //Do something
 }
 else {
 //Do something else
+}
+if (view.autoresizingMask==(UIViewAutoresizingMaskFlexibleWidth|UIViewAutoresizingMaskFlexibleHeight) || error==nil) {
+
+}
+```
+**Good example:**
+```objc
+if (user.isHappy) {
+//Do something
+} else {
+//Do something else
+}
+if (view.autoresizingMask == (UIViewAutoresizingMaskFlexibleWidth | UIViewAutoresizingMaskFlexibleHeight) || error == nil) {
+
 }
 ```
 * There should be exactly one blank line between methods to aid in visual clarity and organization. Whitespace within methods should separate functionality, but often there should probably be new methods.
@@ -73,7 +87,7 @@ else {
 
 Conditional bodies should always use braces even when a conditional body could be written without braces (e.g., it is one line only) to prevent [errors](https://github.com/NYTimes/objective-c-style-guide/issues/26#issuecomment-22074256). These errors include adding a second line and expecting it to be part of the if-statement. Another, [even more dangerous defect](http://programmers.stackexchange.com/a/16530) may happen where the line "inside" the if-statement is commented out, and the next line unwittingly becomes part of the if-statement. In addition, this style is more consistent with all other conditionals, and therefore more easily scannable.
 
-**For example:**
+**GOOD example:**
 ```objc
 if (!error) {
     return success;
@@ -136,6 +150,12 @@ In method signatures, there should be a space after the scope (-/+ symbol). Ther
 **For Example**:
 ```objc
 - (void)setExampleText:(NSString *)text image:(UIImage *)image;
+```
+
+```objc
+- (void)setExampleText:(NSString *)text 
+                 image:(UIImage *)image 
+               details:(NSString *)details;
 ```
 ## Variables
 
@@ -314,6 +334,7 @@ When using `enum`s, it is recommended to use the new fixed underlying type speci
 
 ```objc
 typedef NS_ENUM(NSInteger, NYTAdRequestState) {
+    NYTAdRequestStateUnknown,
     NYTAdRequestStateInactive,
     NYTAdRequestStateLoading
 };
@@ -413,6 +434,9 @@ This will prevent [possible and sometimes prolific crashes](http://cocoasamurai.
 The physical files should be kept in sync with the Xcode project files in order to avoid file sprawl. Any Xcode groups created should be reflected by folders in the filesystem. Code should be grouped not only by type, but also by feature for greater clarity.
 
 When possible, always turn on "Treat Warnings as Errors" in the target's Build Settings and enable as many [additional warnings](http://boredzo.org/blog/archives/2009-11-07/warnings) as possible. If you need to ignore a specific warning, use [Clang's pragma feature](http://clang.llvm.org/docs/UsersManual.html#controlling-diagnostics-via-pragmas).
+
+** Text editing settings **
+Please set "Page guide at column" = 120
 
 # Other Objective-C Style Guides
 
